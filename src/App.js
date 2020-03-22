@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Container from "@material-ui/core/Container";
+
+import NavBar from "./components/NavBar/NavBar";
+import Table from "./components/Table/Table";
+import Country from "./components/Table/Country/Country";
+import Form from "./containers/Form";
+
+
+import ApolloClient from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
+
+const client = new ApolloClient({
+  uri: `https://countries.trevorblades.com/`
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ApolloProvider client={client}>
+      <Container maxWidth="md">
+        <Router>
+          <NavBar />
+          <Route exact path="/" component={Table} />
+          <Route exact path="/form" component={Form} />
+          <Route exact path="/country/:countryCode" component={Country} />
+        </Router>
+      </Container>
+    </ApolloProvider>
   );
 }
 
