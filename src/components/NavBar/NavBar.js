@@ -25,7 +25,6 @@ export default function ButtonAppBar() {
         <Toolbar>
           <Button component={Link} to="/" className={classes.title} color="inherit">Countries</Button>
           <Button component={Link} to="/form" className={classes.title} color="inherit">Login</Button>
-          <Button component={Link} to="/form" className={classes.title} color="inherit">register</Button>
 
         </Toolbar>
       </AppBar>
